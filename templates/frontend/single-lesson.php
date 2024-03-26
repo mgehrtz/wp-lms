@@ -1,0 +1,61 @@
+<?php
+  enqueue_lesson_stylesheet();
+  get_header();
+  global $post;
+  $course_ids = get_purchased_course_ids();
+?>
+
+<div class="wrapper">
+  <div class="sidebar">
+    <?php 
+      foreach ( $course_ids as $course_id ):  
+        $term = get_term( $course_id ); 
+    ?>
+    <div class="course-nav">
+      <a class="course-link" href="<?= get_term_link( $course_id ) ?>"><?= $term->name ?></a>
+      <div class="course-link-wrap">
+        <?php
+          $lesson_ids = get_lesson_ids_by_course( $course_id );
+          foreach( $lesson_ids as $lesson_id ):
+        ?>
+        <a class="lesson-link <?= ($post->ID === $lesson_id) ? 'active-link' : '' ?>" href="<?= get_permalink( $lesson_id ) ?>"><span class="type"><?= get_field('type', $lesson_id) ?></span><?= get_the_title( $lesson_id ) ?></a>
+        <?php endforeach; ?>
+      </div>
+    </div>
+    <?php endforeach; ?>
+    <div class="footer-links"></div>
+  </div>
+  <div class="lesson">
+    <div class="header">
+      <h4 class="subtitle"><?= get_field('type') ?></h4>
+      <h1 class="title"><?= get_the_title() ?></h1>
+      <div class="quote"><?php if(has_excerpt()): get_the_excerpt(); endif; ?></div>
+    </div>
+    <div class="content"><?= apply_filters( 'the_content', get_the_content() ) ?></div>
+    <div class="course-nav-buttons">
+      <?php 
+        $prev_post = get_next_post(); // post order is technically reversed 
+        $next_post = get_previous_post(); 
+      ?>
+      <?php if($prev_post): ?>
+        <a class="nav-button prev" href="<?= get_the_permalink( $prev_post ) ?>">
+          <span class="type">Previous</span>
+          <?= get_field('type', $prev_post->ID) ?>: <?= get_the_title( $prev_post ) ?>
+        </a>
+      <?php else: ?>
+        <div></div>
+      <?php endif; ?>
+      <?php if($next_post): ?>
+        <a class="nav-button next" href="<?= get_the_permalink( $next_post ) ?>">
+          <span class="type">Next</span>
+          <?= get_field('type', $next_post->ID) ?>: <?= get_the_title( $next_post ) ?>
+        </a>
+      <?php else: ?>
+        <div></div>
+      <?php endif; ?>
+    </div>
+  </div>
+</div>
+<?php
+  get_footer();
+?>

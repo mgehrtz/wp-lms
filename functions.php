@@ -1,16 +1,6 @@
 <?php
 
-// Called by ACF custom meta box for course
-function fill_course_meta_box_content( $post ) {
-	$terms = get_terms( array(
-		'taxonomy' => 'course',
-		'hide_empty' => false // Retrieve all terms
-	));
-
-	// We assume that there is a single category
-	$currentTaxonomyValue = get_the_terms($post->ID, 'course')[0];
-  include_once('templates/admin/course-meta-box.php');
-}
+defined( 'ABSPATH' ) || exit;
 
 function populate_associated_product_select_field( $field ) {
 	$args = array(
@@ -28,6 +18,74 @@ function populate_associated_product_select_field( $field ) {
 		}
 	}
 	$field['choices'] = $options;
+	wp_reset_postdata();
 	return $field;
+}
+add_filter( 'acf/load_field/name=associated_product', 'populate_associated_product_select_field' );
+
+function enqueue_lesson_stylesheet(){
+	wp_enqueue_style(
+		'lesson-stylesheet',
+		THEGIFT_PLUGIN_ROOT . '/stylesheets/single-lesson.css'
+	);
+}
+
+function get_purchased_course_ids(){
+	$customer_orders = wc_get_orders( array(
+		'limit' => -1,
+		'customer_id' => get_current_user_id(),
+		'status' => array_values( wc_get_is_paid_statuses() ),
+		'return' => 'ids',
+	) );
+
+	if( !$customer_orders ){
+		return array();
 	}
-	add_filter( 'acf/load_field/name=associated_product', 'populate_associated_product_select_field' );
+
+	$product_ids = array();
+	foreach ( $customer_orders as $order_id ) {
+		$order = wc_get_order( $order_id );
+		$items = $order->get_items();
+		foreach ( $items as $item ) {
+			$product_ids[] = $item->get_product_id();
+		}
+	}
+	$purchased_course_ids = array();
+	$course_ids = get_terms( array(
+		'taxonomy' => 'course',
+		'hide_empty' => false,
+		'fields' => 'ids'
+	) );
+	if( !$course_ids ){
+		return array();
+	}
+	foreach ( $course_ids as $course_id ){
+		$associated_product_id = get_field('associated_product', "course_{$course_id}");
+		if( !$associated_product_id ) continue;
+		if(in_array($associated_product_id, $product_ids)){
+			$purchased_course_ids[] = $course_id;
+		}
+	}
+
+	wp_reset_postdata();
+
+	return $purchased_course_ids;
+}
+
+function get_lesson_ids_by_course( $course_id ){
+	$args = array(
+		'post_type' => 'lesson',
+		'post_status' => 'publish',
+		'posts_per_page' => -1,
+		'tax_query' => array(
+			'taxonomy' => 'course',
+			'field' => 'term_id',
+			'terms' => $course_id
+		),
+		'fields' => 'ids',
+		'orderby' => 'menu_order',
+		'order' => 'ASC'
+	);
+	$query = new WP_Query( $args );
+	return $query->get_posts();
+}
