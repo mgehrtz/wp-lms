@@ -5,17 +5,22 @@ if( ! defined( 'ABSPATH' )){
 }
 
 function the_gift_paywall(){
+  $is_lesson = is_singular( 'lesson' );
+  $is_course = is_tax('course');
+
+  if( !$is_lesson && !$is_course ) return;
+
   if( !is_user_logged_in() ){
     auth_redirect();
   }
   if( current_user_can('administrator') ) return;
 
-  if( is_singular( 'lesson' ) ){
+  if( $is_lesson ){
     global $post;
     $related_course_id = get_the_terms($post, 'course')[0]->term_id;
   }
 
-  if( is_tax( 'course' ) ){
+  if( $is_course ){
     $term = get_queried_object();
     $related_course_id = $term->term_id;
   }
