@@ -30,6 +30,13 @@ function enqueue_lesson_stylesheet(){
 	);
 }
 
+function enqueue_course_stylesheet(){
+	wp_enqueue_style(
+		'course-stylesheet',
+		THEGIFT_PLUGIN_ROOT . '/stylesheets/taxonomy-course.css'
+	);
+}
+
 function get_purchased_course_ids(){
 	$customer_orders = wc_get_orders( array(
 		'limit' => -1,

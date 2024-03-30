@@ -1,0 +1,12 @@
+.tax-course .class-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tax-course .class-wrap {
+  display: block;
+  margin-bottom: 0.5rem;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding: 0.5rem;
+}

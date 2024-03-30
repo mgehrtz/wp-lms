@@ -11,3 +11,4 @@ define('THEGIFT_PLUGIN_ROOT', plugins_url('/', __FILE__) );
 include('paywall.php');
 include('functions.php');
 include('templates.php');
+include('woocommerce-dashboard.php');
