@@ -3,6 +3,7 @@
   get_header();
   global $post;
   $course_ids = get_purchased_course_ids();
+  track_course_progress();
 ?>
 
 <div class="wrapper">
@@ -46,7 +47,7 @@
         <div></div>
       <?php endif; ?>
       <?php if($next_post): ?>
-        <a class="nav-button next" href="<?= get_the_permalink( $next_post ) ?>">
+        <a class="nav-button next" href="<?= get_the_permalink( $next_post ) ?>?complete=<?= $post->ID ?>">
           <span class="type">Next</span>
           <?= get_field('type', $next_post->ID) ?>: <?= get_the_title( $next_post ) ?>
         </a>

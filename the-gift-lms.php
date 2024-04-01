@@ -12,3 +12,4 @@ include('paywall.php');
 include('functions.php');
 include('templates.php');
 include('woocommerce-dashboard.php');
+include('analytics/progress.php');
