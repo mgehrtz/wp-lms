@@ -4,6 +4,9 @@
   global $post;
   $course_ids = get_purchased_course_ids();
   track_course_progress();
+  if( get_field('type') === 'Application'){
+    load_user_entries( $post->ID );
+  }
 ?>
 
 <div class="wrapper">
