@@ -13,3 +13,5 @@ include('functions.php');
 include('templates.php');
 include('woocommerce-dashboard.php');
 include('analytics/progress.php');
+include('shortcodes/application-question.php');
+include('application/application-processing.php');

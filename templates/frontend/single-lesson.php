@@ -1,15 +1,19 @@
 <?php
+
+  defined('ABSPATH') || die;
+  
   enqueue_lesson_stylesheet();
   get_header();
   global $post;
   $course_ids = get_purchased_course_ids();
   track_course_progress();
   if( get_field('type') === 'Application'){
-    load_user_entries( $post->ID );
+    get_user_answers( $post->ID );
   }
 ?>
 
 <div class="wrapper">
+  <?php if( count( $course_ids ) ): ?>
   <div class="sidebar">
     <?php 
       foreach ( $course_ids as $course_id ):  
@@ -29,6 +33,7 @@
     <?php endforeach; ?>
     <div class="footer-links"></div>
   </div>
+  <?php endif; ?>
   <div class="lesson">
     <div class="header">
       <h4 class="subtitle"><?= get_field('type') ?></h4>
@@ -55,7 +60,10 @@
           <?= get_field('type', $next_post->ID) ?>: <?= get_the_title( $next_post ) ?>
         </a>
       <?php else: ?>
-        <div></div>
+        <a class="nav-button next" href="/my-account?complete=<?= $post->ID ?>">
+          <span class="type">Complete Course</span>
+          <?= get_the_terms( $post, 'course' )[0]->name ?>
+        </a>
       <?php endif; ?>
     </div>
   </div>
