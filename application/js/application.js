@@ -1,9 +1,15 @@
 jQuery(document).ready(function($){
-  setupClickListeners($);
+  setupEventListeners($);
   attemptToFillPreviousAnswers($);
 });
 
-function setupClickListeners($){
+function setupEventListeners($){
+  // Question Focus
+  $('.question-wrapper .question-answer').on('keyup', function(){
+    $('body').addClass('dirty-answers');
+  });
+
+  // Save Buttons
   $('.question-wrapper .save.button').on('click', function(){
     let answers = {};
     $('.question-wrapper .question-answer').each(function(){
@@ -13,6 +19,16 @@ function setupClickListeners($){
     if(Object.keys(answers).length){
       submitUserAnswers(answers, $);
     }
+  });
+
+  // Page Change
+  window.addEventListener('beforeunload', function(e){
+    if(
+      !$('body').hasClass('success-submitting-answers') && 
+      $('body').hasClass('dirty-answers')
+    ){
+      e.preventDefault();
+    } 
   });
 }
 
@@ -30,11 +46,13 @@ function submitUserAnswers(answerObj, $){
     dataType: 'JSON',
     success: function(resp){
       $('body').removeClass('submitting-answers');
+      $('body').removeClass('dirty-answers');
       $('body').addClass('success-submitting-answers');
       console.log('Answers submitted.');
     },
     error: function(resp){
       $('body').removeClass('submitting-answers');
+      $('body').removeClass('dirty-answers');
       $('body').addClass('error-submitting-answers');
       console.warn('Error submitting answers.');
     }

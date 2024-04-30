@@ -6,7 +6,8 @@ defined('ABSPATH') || die;
 add_action( 'wp_enqueue_scripts', 'thegift_enqueue_application_scripts' );
 function thegift_enqueue_application_scripts(){
   global $post;
-  if( get_post_type() != 'lesson' && get_field('type') != 'Application' ) return;
+  if( get_post_type() != 'lesson' ) return;
+  if( get_field('type') != 'Application' ) return;
   if( ! is_user_logged_in() ) return;
 
   wp_enqueue_script(
