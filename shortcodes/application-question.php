@@ -9,6 +9,8 @@ function thegift_insert_application_question( $atts, $content ){
   <div class='question-wrapper' style="display: flex; flex-direction: column;">
     <h4><?= $content ?></h4>
     <textarea name="<?= $atts['id'] ?>" class="question-answer" style="width: 100%" placeholder="Write your thoughts here..."></textarea>
+    <span style="display: none" class="save-success">Answers successfully saved.</span>
+    <span style="display: none" class="save-error">Something went wrong trying to save your answers.</span>
     <button class="save button">Save All Answers</button>
   </div>
   <?php

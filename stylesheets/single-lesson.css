@@ -159,3 +159,47 @@ a.nav-button.prev {
   color: #4f6456;
   font-weight: 900;
 }
+
+/* Application Questions */
+.question-wrapper {
+  background: #4f6456;
+  padding: 1.5rem;
+  border-radius: 15px;
+  position: relative;
+}
+
+.question-wrapper h4 {
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 500;
+  font-family: 'Raleway', sans-serif;
+}
+
+textarea.question-answer {
+  height: 175px;
+  border: none;
+  background: #f7f7f7;
+  padding: 1rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+button.save.button {
+  border-radius: 8px;
+  max-width: 275px;
+  font-size: 14px;
+  margin-left: auto;
+}
+
+.save-success, .save-error {
+  color: #fff;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-style: italic;
+}
+.success-submitting-answers .save-success { display: inline !important }
+.error-submitting-answers .save-error { display: inline !important }

@@ -49,12 +49,18 @@ function submitUserAnswers(answerObj, $){
       $('body').removeClass('dirty-answers');
       $('body').addClass('success-submitting-answers');
       console.log('Answers submitted.');
+      setTimeout(function(){
+        $('body').removeClass('success-submitting-answers');
+      }, 5000);
     },
     error: function(resp){
       $('body').removeClass('submitting-answers');
       $('body').removeClass('dirty-answers');
       $('body').addClass('error-submitting-answers');
       console.warn('Error submitting answers.');
+      setTimeout(function(){
+        $('body').removeClass('error-submitting-answers');
+      }, 5000);
     }
   });
 }
