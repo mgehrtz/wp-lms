@@ -166,6 +166,7 @@ a.nav-button.prev {
   padding: 1.5rem;
   border-radius: 15px;
   position: relative;
+  margin-bottom: 3rem;
 }
 
 .question-wrapper h4 {
