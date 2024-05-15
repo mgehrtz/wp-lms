@@ -204,3 +204,14 @@ button.save.button {
 }
 .success-submitting-answers .save-success { display: inline !important }
 .error-submitting-answers .save-error { display: inline !important }
+
+.quote p {
+  color: #f7f7f7;
+  max-width: 800px;
+  margin: 5% auto 0;
+  font-size: 1.75rem;
+}
+
+.question-wrapper p {
+  color: #fff !important;
+}

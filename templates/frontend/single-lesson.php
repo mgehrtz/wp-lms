@@ -38,7 +38,7 @@
     <div class="header">
       <h4 class="subtitle"><?= get_field('type') ?></h4>
       <h1 class="title"><?= get_the_title() ?></h1>
-      <div class="quote"><?php if(has_excerpt()): get_the_excerpt(); endif; ?></div>
+      <div class="quote"><?php if(has_excerpt()): the_excerpt(); endif; ?></div>
     </div>
     <div class="content"><?= apply_filters( 'the_content', get_the_content() ) ?></div>
     <div class="course-nav-buttons">
