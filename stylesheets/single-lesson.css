@@ -212,6 +212,7 @@ button.save.button {
   font-size: 1.75rem;
 }
 
-.question-wrapper p {
+.question-wrapper p,
+.question-wrapper strong {
   color: #fff !important;
 }
