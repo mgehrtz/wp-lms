@@ -1,0 +1,33 @@
+#thegift-order-received {
+  background: #fff;
+  padding: 6rem;
+  border-radius: 20px;
+}
+
+#thegift-order-received h3 {
+  font-size: 3rem;
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 1rem;
+}
+
+#thegift-order-received ul {
+  list-style: disc;
+  padding-left: 3rem;
+  margin-bottom: 4rem;
+}
+
+#thegift-order-received a.button {
+  font-size: 2rem !important;
+  background: var(--colorA);
+  line-height: 45px;
+  border-radius: 10px;
+  font-weight: 700;
+  max-width: 550px;
+  width: 80%;
+  margin: 0 auto !important;
+  display: block;
+}
+
+#thegift-order-received a.button:hover {
+  opacity: .8;
+}

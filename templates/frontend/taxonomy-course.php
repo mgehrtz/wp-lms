@@ -23,7 +23,9 @@ $progress = get_user_meta( get_current_user_id(), 'progress', true );
           <li>
             <a class="class-wrap" href="<?= get_permalink( $lesson_id ) ?>">
               <span class="link-title"><?= get_the_title( $lesson_id ) ?></span>
+              <?php if( get_field('type', $lesson_id) !== "Info"): ?>
               <span class="type"><?= get_field('type', $lesson_id) ?></span>
+              <?php endif; ?>
             </a>
             <div class="progress-marker <?= get_progress_marker_class( $lesson_id, $progress ) ?>"></div>
           </li>

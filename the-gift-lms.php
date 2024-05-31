@@ -2,7 +2,7 @@
 /* 
 * Plugin Name: The Gift - Learning Management System
 * Description: A plugin to manage courses and add functionality to The Gift.
-* Version: 1.1.0
+* Version: 1.1.1
 * Author: Gehrtz Creative
 */
 
@@ -15,3 +15,4 @@ include('woocommerce-dashboard.php');
 include('analytics/progress.php');
 include('shortcodes/application-question.php');
 include('application/application-processing.php');
+include('woocommerce-order-received-filter.php');
