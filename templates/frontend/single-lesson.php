@@ -26,7 +26,14 @@
           $lesson_ids = get_lesson_ids_by_course( $course_id );
           foreach( $lesson_ids as $lesson_id ):
         ?>
-        <a class="lesson-link <?= ($post->ID === $lesson_id) ? 'active-link' : '' ?>" href="<?= get_permalink( $lesson_id ) ?>"><span class="type"><?= get_field('type', $lesson_id) ?></span><?= get_the_title( $lesson_id ) ?></a>
+        <a class="lesson-link <?= ($post->ID === $lesson_id) ? 'active-link' : '' ?>" href="<?= get_permalink( $lesson_id ) ?>">
+          <?php if( get_field('type', $lesson_id) !== "Info" ): ?>
+            <span class="type">
+              <?= get_field('type', $lesson_id); ?>
+            </span>
+          <?php endif; ?>
+          <?= get_the_title( $lesson_id ) ?>
+        </a>
         <?php endforeach; ?>
       </div>
     </div>
@@ -36,7 +43,9 @@
   <?php endif; ?>
   <div class="lesson">
     <div class="header">
+      <?php if( get_field('type') !== "Info" ): ?>
       <h4 class="subtitle"><?= get_field('type') ?></h4>
+      <?php endif; ?>
       <h1 class="title"><?= get_the_title() ?></h1>
       <div class="quote"><?php if(has_excerpt()): the_excerpt(); endif; ?></div>
     </div>
@@ -49,7 +58,12 @@
       <?php if($prev_post): ?>
         <a class="nav-button prev" href="<?= get_the_permalink( $prev_post ) ?>">
           <span class="type">Previous</span>
-          <?= get_field('type', $prev_post->ID) ?>: <?= get_the_title( $prev_post ) ?>
+          <?php
+            if( get_field('type', $prev_post->ID) !== "Info" ){
+              echo get_field('type', $prev_post->ID) . ": ";
+            }
+          ?>
+          <?= get_the_title( $prev_post ) ?>
         </a>
       <?php else: ?>
         <div></div>
@@ -57,7 +71,12 @@
       <?php if($next_post): ?>
         <a class="nav-button next" href="<?= get_the_permalink( $next_post ) ?>?complete=<?= $post->ID ?>">
           <span class="type">Next</span>
-          <?= get_field('type', $next_post->ID) ?>: <?= get_the_title( $next_post ) ?>
+          <?php
+            if( get_field('type', $next_post->ID) !== "Info" ){
+              echo get_field('type', $next_post->ID) . ": ";
+            }
+          ?>
+          <?= get_the_title( $next_post ) ?>
         </a>
       <?php else: ?>
         <a class="nav-button next" href="/my-account?complete=<?= $post->ID ?>">
