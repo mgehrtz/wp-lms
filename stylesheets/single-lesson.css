@@ -176,6 +176,22 @@ a.nav-button.prev {
   font-family: 'Raleway', sans-serif;
 }
 
+.question-wrapper.scale .numbers-wrapper button {
+  background: transparent;
+  color: #f7f7f7;
+  border: 2px solid #f7f7f7;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.question-wrapper.scale .numbers-wrapper button.active {
+  background: #f7f7f7;
+  color: #4f6456;
+}
+
 textarea.question-answer {
   height: 175px;
   border: none;

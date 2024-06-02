@@ -4,11 +4,32 @@ defined('ABSPATH') || die;
 
 add_shortcode( 'application-question', 'thegift_insert_application_question' );
 function thegift_insert_application_question( $atts, $content ){
+  $atts = shortcode_atts(array(
+    "id" => null,
+    "type" => "textarea"
+  ), $atts);
+
   ob_start();
   ?>
-  <div class='question-wrapper' style="display: flex; flex-direction: column;">
+  <div class='question-wrapper <?= $atts['type'] ?>' style="display: flex; flex-direction: column;">
     <h4><?= $content ?></h4>
-    <textarea name="<?= $atts['id'] ?>" class="question-answer" style="width: 100%" placeholder="Write your thoughts here..."></textarea>
+    <?php if( $atts['type'] === 'scale'): ?>
+    <input name="<?= strtolower( $atts['id'] ) ?>" type="hidden" class="question-answer <?= $atts['type'] ?>" value="0" />
+    <div class="numbers-wrapper" data-name="<?= $atts['id'] ?>" style="display: flex; justify-content: space-around;">
+      <button data-value="1">1</button>
+      <button data-value="2">2</button>
+      <button data-value="3">3</button>
+      <button data-value="4">4</button>
+      <button data-value="5">5</button>
+      <button data-value="6">6</button>
+      <button data-value="7">7</button>
+      <button data-value="8">8</button>
+      <button data-value="9">9</button>
+      <button data-value="10">10</button>
+    </div>
+    <?php else: ?>
+    <textarea name="<?= strtolower( $atts['id'] ) ?>" class="question-answer <?= $atts['type'] ?>" style="width: 100%" placeholder="Write your thoughts here..."></textarea>
+    <?php endif; ?>
     <span style="display: none" class="save-success">Answers successfully saved.</span>
     <span style="display: none" class="save-error">Something went wrong trying to save your answers.</span>
     <button class="save button">Save All Answers</button>

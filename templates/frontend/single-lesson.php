@@ -7,9 +7,7 @@
   global $post;
   $course_ids = get_purchased_course_ids();
   track_course_progress();
-  if( get_field('type') === 'Application'){
-    get_user_answers( $post->ID );
-  }
+  get_user_answers( $post->ID );
 ?>
 
 <div class="wrapper">

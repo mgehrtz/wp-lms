@@ -30,6 +30,25 @@ function setupEventListeners($){
       e.preventDefault();
     } 
   });
+
+  // Scale Question Hover Effect
+  $('.question-wrapper.scale .numbers-wrapper button').on('mouseenter', function(){
+    $('.active').removeClass('active');
+    $(this).addClass('active');
+    $(this).prevAll().addClass('active');
+  }).on('mouseleave', function(){
+    $('.active').removeClass('active');
+    const targetName = $(this).parent().data('name');
+    const selection = $(`.question-wrapper.scale input[name="${targetName}"]`).val();
+    const targetEl = $(`.question-wrapper.scale .numbers-wrapper[data-name="${targetName}"] button[data-value="${selection}"]`);
+    $(targetEl).addClass('active');
+    $(targetEl).prevAll().addClass('active');
+  });
+  $('.question-wrapper.scale .numbers-wrapper button').on('click', function(){
+    const selection = $(this).data('value');
+    const targetName = $(this).parent().data('name');
+    $(`.question-wrapper input[name="${targetName}"`).val(selection);
+  });
 }
 
 function submitUserAnswers(answerObj, $){
@@ -68,6 +87,18 @@ function submitUserAnswers(answerObj, $){
 function attemptToFillPreviousAnswers($){
   if(window.previous_application_answers == undefined) return;
   for(const [key, value] of Object.entries(window.previous_application_answers)){
-    $(`.question-wrapper .question-answer[name=${key}]`).eq(0).val(value);
+    const targetEl = $(`.question-wrapper .question-answer[name=${key}]`).eq(0);
+    if($(targetEl).hasClass('scale')){
+      targetEl.attr('value', value);
+    }
+    if($(targetEl).hasClass('textarea')){
+      targetEl.val(value);
+    }
   }
+  $('.question-wrapper.scale .question-answer').each(function(){
+    const selection = $(this).val();
+    const targetEl = $(`.question-wrapper.scale .numbers-wrapper button[data-value="${selection}"]`);
+    $(targetEl).addClass('active');
+    $(targetEl).prevAll().addClass('active');
+  });
 }
