@@ -101,3 +101,11 @@ function remove_image_zoom_support() {
 	remove_theme_support( 'wc-product-gallery-zoom' );
 }
 add_action( 'wp', 'remove_image_zoom_support', 100 );
+
+function thegift_safe_id($string) {
+	$string = strtolower($string);
+	$string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+	$string = preg_replace("/[\s-]+/", " ", $string);
+	$string = preg_replace("/[\s_]/", "-", $string);
+	return $string;
+}

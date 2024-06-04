@@ -232,3 +232,48 @@ button.save.button {
 .question-wrapper strong {
   color: #fff !important;
 }
+
+textarea.question-answer.multipart {
+  height: 40px;
+  margin: 0;
+  line-height: 40px;
+  padding: 0 10px;
+  flex-grow: 1;
+}
+
+.multipart-wrapper {
+  display: flex;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f7f7f7;
+  align-items: center;
+}
+
+.multipart-wrapper:last-child {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.multipart-wrapper label {
+  width: 25%;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-right: 2rem;
+  text-align: right;
+  padding-left: 1rem;
+}
+
+.question-wrapper.multipart h4 {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #ffffff42;
+  padding-bottom: 1.5rem;
+}
+
+.multipart-outer {
+  padding: 1rem;
+  background: #f7f7f71c;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}

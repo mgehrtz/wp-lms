@@ -91,7 +91,10 @@ function attemptToFillPreviousAnswers($){
     if($(targetEl).hasClass('scale')){
       targetEl.attr('value', value);
     }
-    if($(targetEl).hasClass('textarea')){
+    if(
+      $(targetEl).hasClass('textarea') ||
+      $(targetEl).hasClass('multipart')
+    ){
       targetEl.val(value);
     }
   }

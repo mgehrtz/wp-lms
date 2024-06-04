@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.3.0 - June 3, 2024
+- Create a "multipart" type application question.
+- Add helper function to sanitize application quesiton ids.
+
 ## Version 1.2.0 - June 2, 2024
 - Create 'scale' type application question
 - Create Additional Resources in customer dashboard.
