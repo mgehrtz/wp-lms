@@ -76,8 +76,12 @@
           ?>
           <?= get_the_title( $next_post ) ?>
         </a>
-      <?php else: ?>
-        <a class="nav-button next" href="/my-account?complete=<?= $post->ID ?>">
+      <?php 
+        else: 
+        // Todo: This should be more dynamic for additional courses
+        $slug = get_the_terms( $post, 'course' )[0]->slug;
+      ?>
+        <a class="nav-button next" href="/congratulations-<?= $slug ?>?complete=<?= $post->ID ?>">
           <span class="type">Complete Course</span>
           <?= get_the_terms( $post, 'course' )[0]->name ?>
         </a>

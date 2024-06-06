@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.3.1 - June 5, 2024
+- Add tracking to congratulations pages
+- Update 
+
 ## Version 1.3.0 - June 3, 2024
 - Create a "multipart" type application question.
 - Add helper function to sanitize application quesiton ids.
