@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.3.2 - June 20, 2024
+- Update heading styles for lessons
+
 ## Version 1.3.1 - June 5, 2024
 - Add tracking to congratulations pages
 - Update 
