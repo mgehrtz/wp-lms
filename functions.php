@@ -109,3 +109,10 @@ function thegift_safe_id($string) {
 	$string = preg_replace("/[\s_]/", "-", $string);
 	return $string;
 }
+
+function allow_customers_to_read_private_posts() {
+	$subRole = get_role( 'customer' ); //change the name of the user here 
+	$subRole->add_cap( 'read_private_posts' ); //allows the above to read posts 
+	$subRole->add_cap( 'read_private_pages' ); //allows the above to read pages
+}
+add_action( 'init', 'allow_customers_to_read_private_posts' );

@@ -1,6 +1,7 @@
 # Changelog
 
-## Version 1.3.3 - June 24, 2024
+## Version 1.3.4 - June 24, 2024
+- Add ability for customers to read private content
 - Remove `<hr>` if content is empty on multipart questions.
 
 ## Version 1.3.2 - June 20, 2024
