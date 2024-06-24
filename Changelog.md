@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.3.3 - June 24, 2024
+- Remove `<hr>` if content is empty on multipart questions.
+
 ## Version 1.3.2 - June 20, 2024
 - Update heading styles for lessons
 

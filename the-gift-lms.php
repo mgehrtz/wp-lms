@@ -2,7 +2,7 @@
 /* 
 * Plugin Name: The Gift - Learning Management System
 * Description: A plugin to manage courses and add functionality to The Gift.
-* Version: 1.3.2
+* Version: 1.3.3
 * Author: Gehrtz Creative
 */
 

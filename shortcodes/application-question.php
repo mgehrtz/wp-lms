@@ -14,8 +14,9 @@ function thegift_insert_application_question( $atts, $content ){
   ob_start();
   ?>
   <div class='question-wrapper <?= $atts['type'] ?>' style="display: flex; flex-direction: column;">
+    <?php if( ! empty( $content ) ): ?>
     <h4><?= $content ?></h4>
-    <?php if( $atts['type'] === 'scale'): ?>
+    <?php endif; if( $atts['type'] === 'scale'): ?>
       <input name="<?= strtolower( $atts['id'] ) ?>" type="hidden" class="question-answer <?= $atts['type'] ?>" value="0" />
       <div class="numbers-wrapper" data-name="<?= $atts['id'] ?>" style="display: flex; justify-content: space-around;">
         <button data-value="1">1</button>
