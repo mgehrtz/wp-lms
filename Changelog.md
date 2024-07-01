@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.4.1 - June 30, 2024
+- Update tab styles.
+
 ## Version 1.4.0 - June 30, 2024
 - Add tabs to Additional Resources pane.
 
