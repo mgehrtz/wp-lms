@@ -36,6 +36,27 @@ function thegift_woo_resources_endpoint_content() {
     'status' => 'publish'
   );
   $resources = get_posts( $args );
+  $resource_types = get_terms(array(
+    'taxonomy'    => 'resource-type',
+    'hide_empty'  => false,
+    'orderby'     => 'parent',
+    'order'       => 'ASC',
+  ));
+  $tab_content = [];
+  foreach( $resource_types as $resource_type ){
+    if( $resource_type->parent === 0){
+      $tab_content[ $resource_type->term_id ] = array( 'term' => $resource_type, 'children' => array() );
+    } else {
+      $tab_content[ $resource_type->parent ]['children'][ $resource_type->term_id ] = array( 'term' => $resource_type, 'resources' => array() );
+    }
+  }
+  foreach( $resources as $resource ){
+    $terms = get_the_terms( $resource, 'resource-type' );
+    foreach( $terms as $term ){
+      if( $term->parent === 0 ) continue;
+      $tab_content[ $term->parent ][ 'children' ][ $term->term_id ][ 'resources' ][] = $resource;
+    }
+  }
   echo '<h2>Additional Resources</h2>';
 
   if( $resources ){

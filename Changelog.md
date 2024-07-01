@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.4.0 - June 30, 2024
+- Add tabs to Additional Resources pane.
+
 ## Version 1.3.4 - June 24, 2024
 - Add ability for customers to read private content
 - Remove `<hr>` if content is empty on multipart questions.
