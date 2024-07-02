@@ -52,6 +52,7 @@ function thegift_woo_resources_endpoint_content() {
   }
   foreach( $resources as $resource ){
     $terms = get_the_terms( $resource, 'resource-type' );
+    if( ! $terms ) continue;
     foreach( $terms as $term ){
       if( $term->parent === 0 ) continue;
       $tab_content[ $term->parent ][ 'children' ][ $term->term_id ][ 'resources' ][] = $resource;

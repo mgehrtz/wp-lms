@@ -32,9 +32,15 @@
         <?php 
           if( ! empty( $resource_group['resources'] ) ): 
           foreach( $resource_group['resources'] as $resource ): 
+          if( get_field( 'resource_format', $resource ) === 'ext_url' ):
         ?>
         <a href="<?= get_field( 'external_url', $resource ) ?>" class="resource" target="_blank"><?= get_the_title( $resource ) ?></a>
         <?php 
+          elseif ( get_field( 'resource_format', $resource ) === 'html' ):
+        ?> 
+        <div class='general-content'><?= get_field( 'resource_content', $resource ) ?></div>
+        <?php
+          endif;
           endforeach; 
           else: 
         ?>

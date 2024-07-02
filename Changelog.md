@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.4.2 - July 1, 2024
+- Add resource formats and support html
+
 ## Version 1.4.1 - June 30, 2024
 - Update tab styles.
 
